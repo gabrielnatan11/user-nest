@@ -3,6 +3,7 @@ import {
   Post,
   Get,
   Delete,
+  Put,
   Param,
   Body,
   ParseIntPipe,
@@ -27,6 +28,14 @@ export class UserController {
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.userService.findOne(id);
+  }
+
+  @Put(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto: CreateUserDto,
+  ) {
+    return this.userService.update(id, updateUserDto);
   }
 
   @Delete(':id')

@@ -31,6 +31,13 @@ export class UserService {
     return user;
   }
 
+  update(id: number, updateUserDto: CreateUserDto): User {
+    const user = this.findOne(id);
+    user.name = updateUserDto.name;
+    user.email = updateUserDto.email;
+    return user;
+  }
+
   remove(id: number): void {
     const index = this.users.findIndex((u) => u.id === id);
     if (index === -1) throw new NotFoundException('User not found');
